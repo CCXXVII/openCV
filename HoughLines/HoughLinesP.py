@@ -13,7 +13,7 @@ for line in lines:
     x1, y1, x2, y2 = line[0]
     cv2.line(img, (x1, y1), (x2, y2), (255, 0, 0), 2)
     
-print(lines)
+#print(lines)
 
 cv2.imshow("Result Image", img)
 cv2.waitKey(0)
