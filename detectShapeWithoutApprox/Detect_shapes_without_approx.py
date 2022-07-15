@@ -24,8 +24,7 @@ for (i, c) in enumerate(cnts):
     print("area  "+str(area))
     print("h  "+str(h))
     print("w  "+str(w))
-    print("extent"+ str(extent))
-
+    
     cv2.drawContours(image, [c], -1, (240, 0, 159), 3)
     shape = ""
     
@@ -34,13 +33,11 @@ for (i, c) in enumerate(cnts):
             shape = "Circle"
         elif area - (area * 5 / 100) <= (w * h / 2) <= area + (area * 5 / 100):
             shape = "Triangle"
-        elif area - (area * 10 / 100) <=  ((perimeter / 5) * h/2 * (1/2)) * 5 <= area + (area * 10 / 100):
-            shape = "Pentagon"
-        else:
+        elif area - (area * 20 / 100) <=  5.1961 * ((perimeter / 6)**2) / 2 <= area + (area * 10 / 100):
             shape = "Hexagon"
-    elif aspectRatio >= 1.12:
-        shape = "Pentagon"
-
+        elif area - (area * 20 / 100) <=  (perimeter / 5) * (h/2) / 2 * 5 <= area + (area * 20 / 100):
+            shape = "Pentagon"
+    
     elif aspectRatio >= 0.95 and aspectRatio < 1.11:
         shape = "Square"
   
@@ -48,7 +45,7 @@ for (i, c) in enumerate(cnts):
         shape = "Rectangle"
   
     cv2.putText(image, shape, (x, y - 2), cv2.FONT_HERSHEY_SIMPLEX, 0.5,
-        (240, 0, 159), 2)
+        (0,100,140), 2)
  
     print("Contour #{}, extent={:.2f},"
         .format(i + 1, extent))
